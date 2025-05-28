@@ -23,8 +23,7 @@ Fork of [this](https://github.com/yzfly/mcp-python-interpreter/) project which w
 This will start the MCP server inside a Docker container and expose it on port 8050.
 All neccessary data are stored in the `data` folder.
 
-```
-bash
+```bash
 docker compose up -d
 ```
 Once the server is running, you can run the simple client in a separate terminal to test that server is running:
@@ -36,8 +35,7 @@ The client will connect to the server and list available tools, list files in th
 
 ### Stop the Docker container
 
-```
-bash
+```bash
 docker compose down
 ```
 
