@@ -1,0 +1,8 @@
+services:
+  app:
+    image: mcp-python-interpreter
+    build: .
+    ports:
+      - "8050:8050"
+    volumes:
+      - ./data:/app/data
