@@ -185,6 +185,7 @@ def execute_python_code(
 ) -> Dict[str, Any]:
     """
     Execute Python code and return the result.
+    If you want to see the final or intermediate result - use `print` or `display` function for this.
 
     Args:
         code: Python code to execute
