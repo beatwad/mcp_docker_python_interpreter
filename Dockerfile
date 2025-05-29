@@ -21,4 +21,4 @@ VOLUME /app/data
 EXPOSE 8050
 
 # Command to run the server
-CMD ["uv", "run", "server.py"] 
+CMD ["uv", "run", "server.py", "--transport", "sse", "--host", "0.0.0.0", "--port", "8050"]

@@ -9,6 +9,7 @@ or allowed system-wide if explicitly enabled.
 import os
 import sys
 import json
+import argparse
 import subprocess
 import tempfile
 from pathlib import Path
@@ -39,13 +40,24 @@ print(
     file=sys.stderr,
 )
 
+parser = argparse.ArgumentParser(description="Kaggle MCP Server")
+parser.add_argument(
+    "--transport",
+    default="sse",
+    choices=["stdio", "sse"],
+    help="Transport type (stdio or sse)",
+)
+parser.add_argument("--host", default="localhost", help="Host for SSE transport")
+parser.add_argument("--port", type=int, default=8050, help="Port for SSE transport")
+args = parser.parse_args()
+
 # Create our MCP server
 mcp = FastMCP(
     "Python Interpreter",
     description=f"Execute Python code, access Python environments, and manage Python files{' system-wide' if ALLOW_SYSTEM_ACCESS else f' in directory: {WORKING_DIR}'}",
     dependencies=["mcp[cli]"],
-    host="0.0.0.0",
-    port=8050,
+    host=args.host,
+    port=args.port,
 )
 
 # ============================================================================
@@ -823,4 +835,4 @@ Please help me debug this error by:
 
 # Run the server when executed directly
 if __name__ == "__main__":
-    mcp.run(transport="sse")
+    mcp.run(transport=args.transport)
